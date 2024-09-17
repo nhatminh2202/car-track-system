@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginForm from "./layout/LoginForm";
+import MainLayout from "./layout/MainLayout";
+import { Routes, Route } from "react-router-dom";
+import OrderLayout from "./layout/OrderLayout";
+import ScheduleLayout from "./layout/ScheduleLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world React with Hoi Dan IT
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/home" element={<MainLayout />} />
+        <Route path="/orders" element={<OrderLayout />} />
+        <Route path="/schedule" element={<ScheduleLayout />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
+export default App
