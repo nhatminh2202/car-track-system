@@ -3,19 +3,14 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import * as parkDate from "../data/skateboard-parks.json";
 
 const Mapbox = () => {
-    const initialViewport = {
+    const [viewport, setViewport] = useState({
         latitude: 45.4211,
         longitude: -75.6903,
-        width: "100%", 
-        height: "100vh",
+        width: "100%",
+        height: "50vh", 
         zoom: 10
-    };
-
-    const [viewport, setViewport] = useState(() => {
-        const savedViewport = localStorage.getItem("viewport");
-        return savedViewport ? JSON.parse(savedViewport) : initialViewport;
     });
-
+    
     const [selectedPark, setSelectedPark] = useState(null);
 
     useEffect(() => {
@@ -31,12 +26,8 @@ const Mapbox = () => {
         };
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem("viewport", JSON.stringify(viewport));
-    }, [viewport]);
-
     return (
-        <div className="mb-3 overflow-hidden rounded-lg relative"> 
+        <div className="w-full h-full max-h-[calc(100vh-100px)] overflow-hidden rounded-lg">
           <ReactMapGL 
             {...viewport}
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -70,7 +61,6 @@ const Mapbox = () => {
                 onClose={() => {
                   setSelectedPark(null);
                 }}
-                style={{ zIndex: 10 }} 
               >
                 <div>
                   <h1 className="text-center text-black-100 font-bold mt-2 border-b border-gray-300">VEHICLE INFORMATION ID {selectedPark.properties.CAR_ID}</h1>

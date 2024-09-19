@@ -24,16 +24,16 @@ const Schedule = ({ sidebarCollapsed }) => {
             let scrollPosition = 0;
 
             switch (mode) {
-                case 'night':
+                case 'đêm':
                     scrollPosition = 0; // Từ 0:00 đến 6:00
                     break;
-                case 'morning':
+                case 'sáng':
                     scrollPosition = 7 * 60; // Từ 7:00 đến 12:00 
                     break;
-                case 'afternoon':
+                case 'chiều':
                     scrollPosition = 13 * 60; // Từ 13:00 đến 18:00 
                     break;
-                case 'evening':
+                case 'tối':
                     scrollPosition = 19 * 60; // Từ 19:00 đến 23:00 
                     break;
                 default:
@@ -61,7 +61,7 @@ const Schedule = ({ sidebarCollapsed }) => {
     return (
         <div className="p-6 bg-white rounded-lg shadow-lg">
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-xl font-bold">Schedule</h1>
+                <h1 className="text-3xl font-sans mb-4">Lịch trình</h1>
                 <div className="flex items-center space-x-4">
                     <DatePicker
                         defaultValue={selectedDate}
@@ -70,7 +70,7 @@ const Schedule = ({ sidebarCollapsed }) => {
                         className="mr-4"
                         style={{ width: '120px' }}
                     />
-                    {['morning', 'afternoon', 'evening', 'night'].map((mode) => (
+                    {['sáng', 'chiều', 'tối', 'đêm'].map((mode) => (
                         <Button
                             key={mode}
                             type={viewMode === mode ? 'primary' : 'default'}
@@ -107,7 +107,7 @@ const Schedule = ({ sidebarCollapsed }) => {
 
         
                 <div className="flex-grow overflow-hidden">
-                    <div ref={scrollRef} className="overflow-x-auto" style={{ width: 'calc(87vw - 450px)' }}>
+                    <div ref={scrollRef} className="overflow-x-auto" style={{ width: 'calc(110vw - 450px)' }}>
                         <div style={{ width: `${totalHours * 60}px` }}>
                             {/* Time headers */}
                             <div className="flex">
