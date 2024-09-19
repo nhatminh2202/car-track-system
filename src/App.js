@@ -1,18 +1,11 @@
-import LoginForm from "./layout/LoginForm";
-import MainLayout from "./layout/MainLayout";
-import { Routes, Route } from "react-router-dom";
-import OrderLayout from "./layout/OrderLayout";
-import ScheduleLayout from "./layout/ScheduleLayout";
+import MapBox from "./layout/MapBox"
+import Schedule from "./layout/Schedule"
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/home" element={<MainLayout />} />
-        <Route path="/orders" element={<OrderLayout />} />
-        <Route path="/schedule" element={<ScheduleLayout />} />
-      </Routes>
+  return ( 
+    <div className="flex flex-col p-4 ml-3 mr-3">
+        <MapBox/>
+        <Schedule/>
     </div>
   );
 }
