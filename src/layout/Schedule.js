@@ -9,7 +9,7 @@ import moment from 'moment';
 const Schedule = ({ onDriverClick }) => {
     const [viewMode, setViewMode] = useState('morning');
     const [selectedDate, setSelectedDate] = useState(moment().startOf('day')); 
-    const [selectedDriver, setSelectedDriver] = useState(null);
+9
 
     const scrollRef = useRef(null); 
 
@@ -103,12 +103,7 @@ const Schedule = ({ onDriverClick }) => {
                                         return (
                                             <button
                                                 key={scheduleIndex}
-                                                className={`absolute text-blue-700 border border-blue-700 bg-gray-200 
-                                                    bg-opacity-50 hover:bg-blue-700 hover:text-white hover:border-transparent 
-                                                    h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center 
-                                                    cursor-pointer rounded-full transition-all duration-300 ease-in-out ${
-                                                    selectedDriver === feature.driver.name ? 'bg-blue-700 text-white' : ''
-                                                }`}
+                                                className="absolute text-blue-700 border border-blue-700 bg-gray-200 bg-opacity-50 hover:bg-blue-700 hover:text-white hover:border-transparent h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center cursor-pointer rounded-full transition-all duration-300 ease-in-out"
                                                 style={{
                                                     left: `${startPixels}px`,
                                                     width: `${width}px`,
