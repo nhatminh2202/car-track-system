@@ -1,118 +1,144 @@
-import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, } from "react-map-gl";
-import * as parkDate from "../data/skateboard-parks.json";
-import { SearchOutlined } from "@ant-design/icons";
-import VehicleInfoPopup from "./VehicleInfo";
+import React, { useState, useEffect, useRef } from 'react';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import axios from 'axios';
+import * as parkData from '../data/skateboard-parks.json';
 
+const MapBox = ({ selectedDriver }) => {
+    const mapRef = useRef();
+    const [viewport, setViewport] = useState({
+        latitude: 45.4211,
+        longitude: -75.6903,
+        width: "100%",
+        height: "80vh",
+        zoom: 10
+    });
+    const [selectedPark, setSelectedPark] = useState(null);
 
-const Mapbox = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 45.4211,
-    longitude: -75.6903,
-    width: "100%",
-    height: "120vw",
-    zoom: 10
-  });
+    const getRoute = async (destLat, destLng) => {
+        const query = await axios.get(
+            `https://api.mapbox.com/directions/v5/mapbox/driving/${viewport.longitude},${viewport.latitude};${destLng},${destLat}?steps=true&geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
+        );
+        const route = query.data.routes[0].geometry;
 
-  const [selectedPark, setSelectedPark] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredParks, setFilteredParks] = useState([]);
-  const [isSearchActive, setIsSearchActive] = useState(false);
+        if (mapRef.current) {
+            const map = mapRef.current.getMap();
+            if (!map.getSource('route')) {
+                map.addSource('route', {
+                    type: 'geojson',
+                    data: {
+                        type: 'Feature',
+                        properties: {},
+                        geometry: route
+                    }
+                });
+            } else {
+                map.getSource('route').setData({
+                    type: 'Feature',
+                    properties: {},
+                    geometry: route
+                });
+            }
 
-
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedPark(null);
-      }
+            if (!map.getLayer('route')) {
+                map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': 'blue',
+                        'line-width': 2
+                    }
+                });
+            }
+        }
     };
-    window.addEventListener("keydown", listener);
 
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
+    useEffect(() => {
+        const listener = e => {
+            if (e.key === "Escape") {
+                setSelectedPark(null);
+            }
+        };
 
-  const handleSearch = () => {
-    const filtered = parkDate.features.filter(park =>
-      park.properties.CAR_ID.toString().includes(searchValue) ||
-      park.driver.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setFilteredParks(filtered);
-    setIsSearchActive(true); // Kích hoạt chế độ tìm kiếm
-  };
+        window.addEventListener("keydown", listener);
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
+        if (selectedDriver) {
+            const park = parkData.features.find(park => park.driver.name === selectedDriver);
+            if (park) {
+                getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
+                setSelectedPark(park); 
+                setViewport({
+                    ...viewport,
+                    latitude: park.geometry.coordinates[1],
+                    longitude: park.geometry.coordinates[0],
+                    zoom: 14
+                });
+            }
+        }
 
+        return () => {
+            window.removeEventListener("keydown", listener);
+        };
 
+    }, [selectedDriver]);
 
-  return (
-    <div className="w-full h-full max-h-[calc(100vh-100px)] overflow-hidden rounded-lg relative">
-      <div className="absolute top-4 right-4 flex z-10">
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Tìm kiếm theo ID xe hoặc tên tài xế..."
-          className="p-2 w-[250px] rounded-l-lg shadow-md border border-gray-300"
-        />
-        <button
-          onClick={handleSearch}
-          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-r-lg shadow-md flex items-center justify-center"
-        >
-          <SearchOutlined style={{ fontSize: '20px' }} />
-        </button>
-      </div>
-
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
-        onViewportChange={viewport => {
-          setViewport(viewport);
-        }}
-      >
-        {parkDate.features.map(park => {
-          // Kiểm tra xem có phải là xe được tìm kiếm không khi tìm kiếm đang kích hoạt
-          const isSearchedCar = isSearchActive && filteredParks.some(filteredPark => filteredPark.properties.CAR_ID === park.properties.CAR_ID);
-
-
-          return (
-            <Marker
-              key={park.properties.PARK_ID}
-              latitude={park.geometry.coordinates[1]}
-              longitude={park.geometry.coordinates[0]}
+    return (
+        <div className="w-full h-full max-h-[calc(100vh-100px)] overflow-hidden rounded-lg">
+            <ReactMapGL
+                {...viewport}
+                ref={mapRef}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                mapStyle="mapbox://styles/mapbox/streets-v11"
+                onViewportChange={nextViewport => setViewport(nextViewport)}
             >
-              <button
-                className="bg-none border-none cursor-pointer"
-                onClick={e => {
-                  e.preventDefault();
-                  setSelectedPark(park);
-                }}
-              >
-                <img
-                  src="icons8-car-30.png"
-                  alt="Car"
-                  style={{
-                    boxShadow: isSearchedCar ? '0px 0px 15px 5px yellow' : 'none', // Thêm bóng màu vàng nếu là xe được tìm kiếm và đang trong chế độ tìm kiếm
-                    borderRadius: '50%'
-                  }}
-                />
-              </button>
-            </Marker>
-          );
-        })}
+                {parkData.features.map(park => (
+                    <Marker
+                        key={park.properties.PARK_ID}
+                        latitude={park.geometry.coordinates[1]}
+                        longitude={park.geometry.coordinates[0]}
+                    >
+                        <button
+                            className="bg-none border-none cursor-pointer"
+                            onClick={e => {
+                                e.preventDefault();
+                                setSelectedPark(park);
+                                getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
+                            }}
+                        >
+                            if()
+                            <img src="icons8-car-30.png" alt="Car" />
+                        </button>
+                    </Marker>
+                ))}
 
-        {/* Sử dụng component VehicleInfoPopup */}
-        <VehicleInfoPopup park={selectedPark} onClose={() => setSelectedPark(null)} />
-      </ReactMapGL>
-    </div>
-  );
-}
+                {selectedPark && (
+                    <Popup
+                        latitude={selectedPark.geometry.coordinates[1]}
+                        longitude={selectedPark.geometry.coordinates[0]}
+                        onClose={() => setSelectedPark(null)}
+                    >
+                        <div>
+                            <h1 className="text-center text-black-100 font-bold mt-2 border-b border-gray-300">THÔNG TIN XE ID {selectedPark.properties.CAR_ID}</h1>
+                            <div className="text-gray-600">
+                                <p>Tài xế: {selectedPark.driver.name}</p>
+                                <p>Thời gian: {selectedPark.properties.TIME}</p>
+                                <p>Vĩ độ: {selectedPark.geometry.coordinates[1]}</p>
+                                <p>Kinh độ: {selectedPark.geometry.coordinates[0]}</p>
+                                <p>Tốc độ: {selectedPark.properties.SPEED}</p>
+                                <p>Vị trí: {selectedPark.properties.ADDRESS}</p>
+                                <p>Giao thức: {selectedPark.properties.PROTOCOL}</p>
+                                <p>Xăng: {selectedPark.properties.FUEL_LEVEL}</p>
+                            </div>
+                        </div>
+                    </Popup>
+                )}
+            </ReactMapGL>
+        </div>
+    );
+};
 
-export default Mapbox;
+export default MapBox;

@@ -18,7 +18,8 @@
         "ACCESSIBLE": "yes/oui",
         "OPEN": null,
         "NOTES": "Indoor parking",
-        "ACCURACY": 0.02
+        "ACCURACY": 0.02,
+        "VEHICLE_TYPE": "car"
       },
       "geometry": {
         "type": "Point",
@@ -28,7 +29,20 @@
         "name": "Sarah Johnson",
         "age": 35,
         "license": "C1",
-        "experience": "12 years"
+        "experience": "12 years",
+        "plate": "F 5444 AMP",
+        "merk": "Avanza",
+        "schedule": [
+          { "startTime": "00:30", "endTime": "05:15" },
+          { "startTime": "06:24", "endTime": "10:03" },
+          { "startTime": "14:10", "endTime": "17:45" },
+          { "startTime": "18:00", "endTime": "22:31" }
+        ],
+        "route": [
+          [-75.657489, 45.412298],
+          [-75.658989, 45.413198],
+          [-75.659989, 45.414298]
+        ]
       }
     },
     {
@@ -49,7 +63,8 @@
         "ACCESSIBLE": "no/non",
         "OPEN": null,
         "NOTES": "Mountain path",
-        "ACCURACY": 0.03
+        "ACCURACY": 0.03,
+        "VEHICLE_TYPE": "scooter"
       },
       "geometry": {
         "type": "Point",
@@ -59,7 +74,19 @@
         "name": "Daniel Kim",
         "age": 30,
         "license": "A",
-        "experience": "8 years"
+        "experience": "8 years",
+        "plate": "F 3333 XAB",
+        "merk": "Raize",
+        "schedule": [
+          { "startTime": "02:17", "endTime": "04:54" },
+          { "startTime": "08:30", "endTime": "11:00" },
+          { "startTime": "19:15", "endTime": "21:45" }
+        ],
+        "route": [
+          [-75.501389, 45.429876],
+          [-75.502500, 45.430900],
+          [-75.503600, 45.431950]
+        ]
       }
     },
     {
@@ -80,7 +107,8 @@
         "ACCESSIBLE": "yes/oui",
         "OPEN": null,
         "NOTES": "Off-road terrain",
-        "ACCURACY": 0.05
+        "ACCURACY": 0.05,
+        "VEHICLE_TYPE": "bus"
       },
       "geometry": {
         "type": "Point",
@@ -90,7 +118,19 @@
         "name": "Elena García",
         "age": 40,
         "license": "D",
-        "experience": "15 years"
+        "experience": "15 years",
+        "plate": "F 9999 BAD",
+        "merk": "Cruise",
+        "schedule": [
+          { "startTime": "01:09", "endTime": "06:10" },
+          { "startTime": "09:30", "endTime": "12:52" },
+          { "startTime": "22:21", "endTime": "23:30" }
+        ],
+        "route": [
+          [-75.812976, 45.478593],
+          [-75.814000, 45.479500],
+          [-75.815050, 45.480600]
+        ]
       }
     },
     {
@@ -111,7 +151,8 @@
         "ACCESSIBLE": "no/non",
         "OPEN": null,
         "NOTES": "Urban road",
-        "ACCURACY": 0.02
+        "ACCURACY": 0.02,
+        "VEHICLE_TYPE": "bus"
       },
       "geometry": {
         "type": "Point",
@@ -121,658 +162,19 @@
         "name": "Tom White",
         "age": 28,
         "license": "B1",
-        "experience": "5 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 16:10:22",
-        "CAR_ID": 965,
-        "FACILITYID": 28019,
-        "ADDRESS": "512 Cedar Street",
-        "ADDRESS_FR": "512, rue Cedar",
-        "VALID": "yes",
-        "SPEED": "80km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "65%",
-        "FACILITY_T": "steep",
-        "FACILITY_1": "raide",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Highway",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.601234, 45.432221]
-      },
-      "driver": {
-        "name": "Lucy Green",
-        "age": 37,
-        "license": "C2",
-        "experience": "14 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 17:05:10",
-        "CAR_ID": 966,
-        "FACILITYID": 28020,
-        "ADDRESS": "945 Elm Road",
-        "ADDRESS_FR": "945, chemin Elm",
-        "VALID": "no",
-        "SPEED": "0km/h",
-        "PROTOCOL": "gpsd",
-        "FUEL_LEVEL": "10%",
-        "FACILITY_T": "rough",
-        "FACILITY_1": "rugueux",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Construction site",
-        "ACCURACY": 0.05
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.812954, 45.473987]
-      },
-      "driver": {
-        "name": "Carlos López",
-        "age": 50,
-        "license": "D",
-        "experience": "22 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 18:20:45",
-        "CAR_ID": 967,
-        "FACILITYID": 28021,
-        "ADDRESS": "610 Spruce Avenue",
-        "ADDRESS_FR": "610, avenue Spruce",
-        "VALID": "yes",
-        "SPEED": "35km/h",
-        "PROTOCOL": "osmand",
-        "FUEL_LEVEL": "55%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Residential street",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.523454, 45.387654]
-      },
-      "driver": {
-        "name": "Emily Brown",
-        "age": 33,
-        "license": "B1",
-        "experience": "11 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 19:05:30",
-        "CAR_ID": 968,
-        "FACILITYID": 28022,
-        "ADDRESS": "789 Willow Street",
-        "ADDRESS_FR": "789, rue Willow",
-        "VALID": "yes",
-        "SPEED": "65km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "35%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Country road",
-        "ACCURACY": 0.02
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.467829, 45.400111]
-      },
-      "driver": {
-        "name": "James Williams",
-        "age": 29,
-        "license": "C1",
-        "experience": "8 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 20:15:12",
-        "CAR_ID": 969,
-        "FACILITYID": 28023,
-        "ADDRESS": "1532 Chestnut Road",
-        "ADDRESS_FR": "1532, chemin Chestnut",
-        "VALID": "yes",
-        "SPEED": "50km/h",
-        "PROTOCOL": "gpsd",
-        "FUEL_LEVEL": "85%",
-        "FACILITY_T": "steep",
-        "FACILITY_1": "raide",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Hilly area",
-        "ACCURACY": 0.03
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.392876, 45.479112]
-      },
-      "driver": {
-        "name": "Sophia Miller",
-        "age": 41,
-        "license": "B2",
-        "experience": "16 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/18 21:22:40",
-        "CAR_ID": 970,
-        "FACILITYID": 28024,
-        "ADDRESS": "988 Palm Drive",
-        "ADDRESS_FR": "988, promenade Palm",
-        "VALID": "no",
-        "SPEED": "0km/h",
-        "PROTOCOL": "gpx",
-        "FUEL_LEVEL": "10%",
-        "FACILITY_T": "rough",
-        "FACILITY_1": "rugueux",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Off-road",
-        "ACCURACY": 0.05
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.812456, 45.383421]
-      },
-      "driver": {
-        "name": "Liam Jackson",
-        "age": 46,
-        "license": "D",
-        "experience": "20 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 07:10:05",
-        "CAR_ID": 971,
-        "FACILITYID": 28025,
-        "ADDRESS": "2053 Aspen Drive",
-        "ADDRESS_FR": "2053, promenade Aspen",
-        "VALID": "yes",
-        "SPEED": "55km/h",
-        "PROTOCOL": "osmand",
-        "FUEL_LEVEL": "60%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Suburban road",
-        "ACCURACY": 0.02
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.523987, 45.398567]
-      },
-      "driver": {
-        "name": "Amelia Evans",
-        "age": 32,
-        "license": "B1",
-        "experience": "9 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 08:25:48",
-        "CAR_ID": 972,
-        "FACILITYID": 28026,
-        "ADDRESS": "1206 Redwood Lane",
-        "ADDRESS_FR": "1206, ruelle Redwood",
-        "VALID": "yes",
-        "SPEED": "70km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "40%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Highway ramp",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.601224, 45.422111]
-      },
-      "driver": {
-        "name": "Oliver Scott",
-        "age": 39,
-        "license": "C2",
-        "experience": "17 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 09:55:30",
-        "CAR_ID": 973,
-        "FACILITYID": 28027,
-        "ADDRESS": "354 Beech Street",
-        "ADDRESS_FR": "354, rue Beech",
-        "VALID": "no",
-        "SPEED": "0km/h",
-        "PROTOCOL": "gpx",
-        "FUEL_LEVEL": "20%",
-        "FACILITY_T": "rough",
-        "FACILITY_1": "rugueux",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Dirt road",
-        "ACCURACY": 0.04
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.792456, 45.465111]
-      },
-      "driver": {
-        "name": "Isabella Martinez",
-        "age": 45,
-        "license": "D",
-        "experience": "20 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 11:05:15",
-        "CAR_ID": 974,
-        "FACILITYID": 28028,
-        "ADDRESS": "901 Elmwood Avenue",
-        "ADDRESS_FR": "901, avenue Elmwood",
-        "VALID": "yes",
-        "SPEED": "40km/h",
-        "PROTOCOL": "gpsd",
-        "FUEL_LEVEL": "85%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Commercial area",
-        "ACCURACY": 0.02
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.654876, 45.478222]
-      },
-      "driver": {
-        "name": "Henry Wilson",
-        "age": 36,
-        "license": "B2",
-        "experience": "12 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 12:30:42",
-        "CAR_ID": 975,
-        "FACILITYID": 28029,
-        "ADDRESS": "1780 Oak Lane",
-        "ADDRESS_FR": "1780, ruelle Oak",
-        "VALID": "yes",
-        "SPEED": "65km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "75%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Mountain road",
-        "ACCURACY": 0.03
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.711123, 45.376432]
-      },
-      "driver": {
-        "name": "Mason Thomas",
-        "age": 40,
-        "license": "C1",
-        "experience": "18 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 13:40:30",
-        "CAR_ID": 976,
-        "FACILITYID": 28030,
-        "ADDRESS": "483 Willowbrook Road",
-        "ADDRESS_FR": "483, rue Willowbrook",
-        "VALID": "yes",
-        "SPEED": "30km/h",
-        "PROTOCOL": "osmand",
-        "FUEL_LEVEL": "60%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Urban area",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.312456, 45.412365]
-      },
-      "driver": {
-        "name": "Noah Parker",
-        "age": 29,
-        "license": "B1",
-        "experience": "7 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 14:25:18",
-        "CAR_ID": 977,
-        "FACILITYID": 28031,
-        "ADDRESS": "920 Birchwood Street",
-        "ADDRESS_FR": "920, rue Birchwood",
-        "VALID": "yes",
-        "SPEED": "50km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "45%",
-        "FACILITY_T": "steep",
-        "FACILITY_1": "raide",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Rural highway",
-        "ACCURACY": 0.02
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.654789, 45.329865]
-      },
-      "driver": {
-        "name": "Sophia Clark",
-        "age": 34,
-        "license": "C2",
-        "experience": "10 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 15:40:50",
-        "CAR_ID": 978,
-        "FACILITYID": 28032,
-        "ADDRESS": "567 Oakridge Lane",
-        "ADDRESS_FR": "567, ruelle Oakridge",
-        "VALID": "no",
-        "SPEED": "0km/h",
-        "PROTOCOL": "gpsd",
-        "FUEL_LEVEL": "15%",
-        "FACILITY_T": "rough",
-        "FACILITY_1": "rugueux",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Construction zone",
-        "ACCURACY": 0.04
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.751234, 45.467891]
-      },
-      "driver": {
-        "name": "Emma Hill",
-        "age": 42,
-        "license": "D",
-        "experience": "20 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 16:55:12",
-        "CAR_ID": 979,
-        "FACILITYID": 28033,
-        "ADDRESS": "231 Aspen Grove Avenue",
-        "ADDRESS_FR": "231, avenue Aspen Grove",
-        "VALID": "yes",
-        "SPEED": "40km/h",
-        "PROTOCOL": "gpx",
-        "FUEL_LEVEL": "70%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Suburban residential",
-        "ACCURACY": 0.03
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.345612, 45.425876]
-      },
-      "driver": {
-        "name": "William Johnson",
-        "age": 38,
-        "license": "B2",
-        "experience": "16 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 17:22:40",
-        "CAR_ID": 980,
-        "FACILITYID": 28034,
-        "ADDRESS": "1057 Maplewood Avenue",
-        "ADDRESS_FR": "1057, avenue Maplewood",
-        "VALID": "yes",
-        "SPEED": "65km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "80%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Highway",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.489213, 45.456789]
-      },
-      "driver": {
-        "name": "Charlotte Lewis",
-        "age": 30,
-        "license": "C1",
-        "experience": "8 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 18:35:12",
-        "CAR_ID": 981,
-        "FACILITYID": 28035,
-        "ADDRESS": "345 Cedar Street",
-        "ADDRESS_FR": "345, rue Cedar",
-        "VALID": "yes",
-        "SPEED": "30km/h",
-        "PROTOCOL": "osmand",
-        "FUEL_LEVEL": "45%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Urban road",
-        "ACCURACY": 0.02
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.367890, 45.478123]
-      },
-      "driver": {
-        "name": "Lily Thompson",
-        "age": 27,
-        "license": "B1",
-        "experience": "6 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 19:15:23",
-        "CAR_ID": 982,
-        "FACILITYID": 28036,
-        "ADDRESS": "678 Spruce Avenue",
-        "ADDRESS_FR": "678, avenue Spruce",
-        "VALID": "yes",
-        "SPEED": "55km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "65%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Mountain road",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.512678, 45.367890]
-      },
-      "driver": {
-        "name": "Lucas Walker",
-        "age": 33,
-        "license": "C2",
-        "experience": "12 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 20:05:45",
-        "CAR_ID": 983,
-        "FACILITYID": 28037,
-        "ADDRESS": "890 Redwood Drive",
-        "ADDRESS_FR": "890, promenade Redwood",
-        "VALID": "yes",
-        "SPEED": "40km/h",
-        "PROTOCOL": "gpsd",
-        "FUEL_LEVEL": "80%",
-        "FACILITY_T": "rough",
-        "FACILITY_1": "rugueux",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Construction zone",
-        "ACCURACY": 0.03
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.456789, 45.329456]
-      },
-      "driver": {
-        "name": "Mia Harris",
-        "age": 42,
-        "license": "D",
-        "experience": "18 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 21:10:58",
-        "CAR_ID": 984,
-        "FACILITYID": 28038,
-        "ADDRESS": "123 Birch Avenue",
-        "ADDRESS_FR": "123, avenue Birch",
-        "VALID": "no",
-        "SPEED": "0km/h",
-        "PROTOCOL": "gpx",
-        "FUEL_LEVEL": "10%",
-        "FACILITY_T": "flat",
-        "FACILITY_1": "plat",
-        "ACCESSCTRL": "no/non",
-        "ACCESSIBLE": "yes/oui",
-        "OPEN": null,
-        "NOTES": "Rest area",
-        "ACCURACY": 0.05
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.298765, 45.456123]
-      },
-      "driver": {
-        "name": "Ethan King",
-        "age": 46,
-        "license": "B2",
-        "experience": "20 years"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "TIME": "2024/4/19 22:20:30",
-        "CAR_ID": 985,
-        "FACILITYID": 28039,
-        "ADDRESS": "456 Maplewood Lane",
-        "ADDRESS_FR": "456, ruelle Maplewood",
-        "VALID": "yes",
-        "SPEED": "70km/h",
-        "PROTOCOL": "nmea",
-        "FUEL_LEVEL": "90%",
-        "FACILITY_T": "inclined",
-        "FACILITY_1": "incliné",
-        "ACCESSCTRL": "yes/oui",
-        "ACCESSIBLE": "no/non",
-        "OPEN": null,
-        "NOTES": "Highway ramp",
-        "ACCURACY": 0.01
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-75.678923, 45.389654]
-      },
-      "driver": {
-        "name": "Isabella White",
-        "age": 37,
-        "license": "C1",
-        "experience": "15 years"
+        "experience": "5 years",
+        "plate": "F 1009 AMP",
+        "merk": "Jazz",
+        "schedule": [
+          { "startTime": "03:37", "endTime": "08:06" },
+          { "startTime": "10:10", "endTime": "15:30" },
+          { "startTime": "17:00", "endTime": "21:20" }
+        ],
+        "route": [
+          [-75.347299, 45.389122],
+          [-75.348500, 45.390100],
+          [-75.349600, 45.391150]
+        ]
       }
     }
   ]
