@@ -13,6 +13,10 @@ const MapBox = ({ selectedDriver }) => {
         zoom: 10
     });
     const [selectedPark, setSelectedPark] = useState(null);
+    
+    /*  vế 1: Tọa độ của đích
+        vế 2: Tọa độ của điểm bắt đầu
+    */
 
     const getRoute = async (destLat, destLng) => {
         const query = await axios.get(
@@ -69,7 +73,7 @@ const MapBox = ({ selectedDriver }) => {
         if (selectedDriver) {
             const park = parkData.features.find(park => park.driver.name === selectedDriver);
             if (park) {
-                getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
+                getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]); 
                 setSelectedPark(park); 
                 setViewport({
                     ...viewport,

@@ -56,7 +56,7 @@ const Schedule = ({ onDriverClick }) => {
                 {/* Fixed Plate and Merk columns */}
                 <div className="flex-shrink-0">
                     <div className="flex">
-                        {['Plate', 'Merk'].map((header) => (
+                        {['Biển số xe', 'Tài xế'].map((header) => (
                             <div key={header} className="font-bold w-[150px] text-blue-700 h-10 border-r border-b border-gray-300 flex items-center justify-center bg-white">
                                 {header}
                             </div>
