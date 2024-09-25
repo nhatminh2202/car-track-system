@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../components/button";
-import ScheduleData from "../data/scheduleData";
+import ScheduleData from "../data/skateboard-parks.json";
 import { UserOutlined } from "@ant-design/icons";
 import { DatePicker } from 'antd';
 import 'antd/dist/reset.css'; 
 import moment from 'moment';
 
-const Schedule = ({ sidebarCollapsed }) => {
+const Schedule = ({ onDriverClick }) => {
     const [viewMode, setViewMode] = useState('morning');
     const [selectedDate, setSelectedDate] = useState(moment().startOf('day')); 
     const scrollRef = useRef(null); 
@@ -14,38 +14,8 @@ const Schedule = ({ sidebarCollapsed }) => {
     const totalHours = 24;
     const hoursArray = Array.from({ length: totalHours }, (_, index) => `${index.toString().padStart(2, '0')}:00`);
 
-    useEffect(() => {
-    }, [selectedDate]);
-
-    const handleChangeViewMode = (mode) => {
-        setViewMode(mode);
-
-        if (scrollRef.current) {
-            let scrollPosition = 0;
-
-            switch (mode) {
-                case 'đêm':
-                    scrollPosition = 0; // Từ 0:00 đến 6:00
-                    break;
-                case 'sáng':
-                    scrollPosition = 7 * 60; // Từ 7:00 đến 12:00 
-                    break;
-                case 'chiều':
-                    scrollPosition = 13 * 60; // Từ 13:00 đến 18:00 
-                    break;
-                case 'tối':
-                    scrollPosition = 19 * 60; // Từ 19:00 đến 23:00 
-                    break;
-                default:
-                    scrollPosition = 0;
-            }
-
-            scrollRef.current.scrollLeft = scrollPosition; 
-        }
-    };
-
-    const handleDateChange = (date, dateString) => {
-        setSelectedDate(date ? moment(dateString) : moment().startOf('day'));
+    const handleClick = (driverName) => {
+        onDriverClick(driverName); // Notify the parent when a driver is clicked
     };
 
     const timeToIndex = (time) => {
@@ -66,7 +36,6 @@ const Schedule = ({ sidebarCollapsed }) => {
                     <DatePicker
                         defaultValue={selectedDate}
                         format="YYYY-MM-DD"
-                        onChange={handleDateChange}
                         className="mr-4"
                         style={{ width: '120px' }}
                     />
@@ -74,7 +43,7 @@ const Schedule = ({ sidebarCollapsed }) => {
                         <Button
                             key={mode}
                             type={viewMode === mode ? 'primary' : 'default'}
-                            onClick={() => handleChangeViewMode(mode)}
+                            onClick={() => setViewMode(mode)}
                         >
                             {mode.charAt(0).toUpperCase() + mode.slice(1)}
                         </Button>
@@ -93,19 +62,18 @@ const Schedule = ({ sidebarCollapsed }) => {
                             </div>
                         ))}
                     </div>
-                    {ScheduleData.map((vehicle, index) => (
+                    {ScheduleData.features.map((feature, index) => (
                         <div key={index} className="flex">
                             <div className="w-[150px] h-10 border-r border-b border-gray-300 flex items-center justify-center">
-                                <div className="bg-gray-300 rounded-lg w-[80%] text-center">{vehicle.plate}</div>
+                                <div className="bg-gray-300 rounded-lg w-[80%] text-center">{feature.driver.plate}</div>
                             </div>
                             <div className="w-[150px] h-10 border-r border-b border-gray-300 flex items-center justify-center">
-                                {vehicle.merk}
+                                {feature.driver.merk}
                             </div>
                         </div>
                     ))}
                 </div>
 
-        
                 <div className="flex-grow overflow-hidden">
                     <div ref={scrollRef} className="overflow-x-auto" style={{ width: 'calc(110vw - 450px)' }}>
                         <div style={{ width: `${totalHours * 60}px` }}>
@@ -119,34 +87,35 @@ const Schedule = ({ sidebarCollapsed }) => {
                             </div>
 
                             {/* Schedule rows */}
-                            {ScheduleData.map((vehicle, vehicleIndex) => (
+                            {ScheduleData.features.map((feature, vehicleIndex) => (
                                 <div key={vehicleIndex} className="relative h-10">
                                     {hoursArray.map((_, hourIndex) => (
                                         <div key={hourIndex} className="absolute top-0 w-[60px] h-full border-r border-b border-gray-300" style={{ left: `${hourIndex * 60}px` }} />
                                     ))}
-                                    {vehicle.schedule.map((schedule, scheduleIndex) => {
+                                    {feature.driver.schedule.map((schedule, scheduleIndex) => {
                                         const startIndex = timeToIndex(schedule.startTime);
                                         const endIndex = timeToIndex(schedule.endTime);
                                         const startPixels = startIndex * 60;
                                         const width = (endIndex - startIndex) * 60;
                                         return (
-                                            <div
+                                            <button
                                                 key={scheduleIndex}
-                                                className="absolute text-blue-700 border border-blue-700 bg-gray-200 bg-opacity-50 h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center cursor-pointer"
+                                                className="absolute text-blue-700 border border-blue-700 bg-gray-200 bg-opacity-50 hover:bg-blue-700 hover:text-white hover:border-transparent h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center cursor-pointer rounded-full transition-all duration-300 ease-in-out"
                                                 style={{
                                                     left: `${startPixels}px`,
                                                     width: `${width}px`,
-                                                    borderRadius: "10px",
+                                                    borderRadius: "20px",
                                                 }}
                                                 title={`${formatTime(schedule.startTime)} - ${formatTime(schedule.endTime)}`}
+                                                onClick={() => handleClick(feature.driver.name)}
                                             >
                                                 {width > 30 && (
                                                     <>
                                                         <UserOutlined className="mr-3"/>
-                                                        {vehicle.driver}
+                                                        {feature.driver.name}
                                                     </>
                                                 )}
-                                            </div>
+                                            </button>
                                         );
                                     })}
                                 </div>
