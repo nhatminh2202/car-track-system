@@ -106,11 +106,16 @@ const MapBox = ({ selectedDriver }) => {
                             onClick={e => {
                                 e.preventDefault();
                                 setSelectedPark(park);
-                                getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
                             }}
                         >
-                            if()
-                            <img src="icons8-car-30.png" alt="Car" />
+                            {park.properties.VEHICLE_TYPE === "car" ? (
+                                <img src="icons8-car-30.png" alt="Car" />
+                            ) : park.properties.VEHICLE_TYPE === "scooter" ? (
+                                <img src="icons8-scooter-30.png" alt="Scooter" />
+                            ) :  park.properties.VEHICLE_TYPE === "bus" ? (
+                                <img src="icons8-bus-30.png" alt="Bus" />
+                            ) : null
+                            }
                         </button>
                     </Marker>
                 ))}
