@@ -5,7 +5,7 @@ function App() {
   return ( 
     <div className="flex flex-col p-4 ml-3 mr-3">
         <MapBox/>
-        <Schedule/>
+        
     </div>
   );
 }

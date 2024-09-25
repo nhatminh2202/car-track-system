@@ -122,7 +122,7 @@ const Schedule = ({ sidebarCollapsed }) => {
                             {ScheduleData.map((vehicle, vehicleIndex) => (
                                 <div key={vehicleIndex} className="relative h-10">
                                     {hoursArray.map((_, hourIndex) => (
-                                        <div key={hourIndex} className="absolute top-0 w-[60px] h-full border-r border-b border-gray-300" style={{ left: `${hourIndex * 60}px` }} />
+                                    <div key={hourIndex} className="absolute top-0 w-[60px] h-full border-r border-b border-gray-300" style={{ left: `${hourIndex * 60}px` }} />
                                     ))}
                                     {vehicle.schedule.map((schedule, scheduleIndex) => {
                                         const startIndex = timeToIndex(schedule.startTime);
