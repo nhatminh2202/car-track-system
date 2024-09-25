@@ -9,12 +9,15 @@ import moment from 'moment';
 const Schedule = ({ onDriverClick }) => {
     const [viewMode, setViewMode] = useState('morning');
     const [selectedDate, setSelectedDate] = useState(moment().startOf('day')); 
+    const [selectedDriver, setSelectedDriver] = useState(null);
+
     const scrollRef = useRef(null); 
 
     const totalHours = 24;
     const hoursArray = Array.from({ length: totalHours }, (_, index) => `${index.toString().padStart(2, '0')}:00`);
 
     const handleClick = (driverName) => {
+        setSelectedDriver(driverName); // Lưu trữ tài xế được chọn
         onDriverClick(driverName); // Notify the parent when a driver is clicked
     };
 
@@ -56,7 +59,7 @@ const Schedule = ({ onDriverClick }) => {
                 {/* Fixed Plate and Merk columns */}
                 <div className="flex-shrink-0">
                     <div className="flex">
-                        {['Plate', 'Merk'].map((header) => (
+                        {['Biển số xe', 'Hãng xe'].map((header) => (
                             <div key={header} className="font-bold w-[150px] text-blue-700 h-10 border-r border-b border-gray-300 flex items-center justify-center bg-white">
                                 {header}
                             </div>
@@ -100,7 +103,12 @@ const Schedule = ({ onDriverClick }) => {
                                         return (
                                             <button
                                                 key={scheduleIndex}
-                                                className="absolute text-blue-700 border border-blue-700 bg-gray-200 bg-opacity-50 hover:bg-blue-700 hover:text-white hover:border-transparent h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center cursor-pointer rounded-full transition-all duration-300 ease-in-out"
+                                                className={`absolute text-blue-700 border border-blue-700 bg-gray-200 
+                                                    bg-opacity-50 hover:bg-blue-700 hover:text-white hover:border-transparent 
+                                                    h-8 top-1 overflow-hidden whitespace-nowrap flex items-center justify-center 
+                                                    cursor-pointer rounded-full transition-all duration-300 ease-in-out ${
+                                                    selectedDriver === feature.driver.name ? 'bg-blue-700 text-white' : ''
+                                                }`}
                                                 style={{
                                                     left: `${startPixels}px`,
                                                     width: `${width}px`,

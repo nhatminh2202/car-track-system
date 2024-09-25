@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import * as parkData from '../data/skateboard-parks.json';
 import { SearchOutlined } from "@ant-design/icons";
@@ -80,7 +80,7 @@ const MapBox = ({ selectedDriver }) => {
           ...viewport,
           latitude: park.geometry.coordinates[1],
           longitude: park.geometry.coordinates[0],
-          zoom: 14
+          zoom: 10
         });
       }
     }
@@ -92,12 +92,36 @@ const MapBox = ({ selectedDriver }) => {
   }, [selectedDriver]);
 
   const handleSearch = () => {
+    if(!searchValue.trim()) {
+      setFilteredParks([]);
+      setIsSearchActive(false);
+      setSelectedPark(null);
+      setViewport({
+        ...viewport,
+        latitude: 45.4211, // Giá trị mặc định ban đầu
+        longitude: -75.6903,
+        zoom: 10
+      });
+      return;
+    }
+
     const filtered = parkData.features.filter(park =>
       park.properties.CAR_ID.toString().includes(searchValue) ||
       park.driver.name.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredParks(filtered);
     setIsSearchActive(true); // Kích hoạt chế độ tìm kiếm
+
+    if (filtered.length > 0) {
+      const car = filtered[0]; // Lấy xe đầu tiên trong danh sách kết quả tìm kiếm
+      setViewport({
+        ...viewport,
+        latitude: car.geometry.coordinates[1], // Cập nhật vị trí xe
+        longitude: car.geometry.coordinates[0],
+        zoom: 12 // Zoom vào vị trí xe
+      });
+      setSelectedPark(car); // Đặt xe được chọn để hiển thị popup thông tin
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -108,15 +132,15 @@ const MapBox = ({ selectedDriver }) => {
 
 
   return (
-    <div className="w-full h-full max-h-[calc(100vh-100px)] overflow-hidden rounded-lg">
+    <div className="w-full h-full max-h-[calc(100vh-100px)] overflow-hidden rounded-lg relative">
       <div className="absolute top-4 right-4 flex z-10">
         <input
           type="text"
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e) => {setSearchValue(e.target.value); handleSearch(); }}
           onKeyPress={handleKeyPress}
           placeholder="Tìm kiếm theo ID xe hoặc tên tài xế..."
-          className="p-2 w-[250px] rounded-l-lg shadow-md border border-gray-300"
+          className="p-2 w-[350px] rounded-l-lg shadow-md border border-gray-300"
         />
         <button
           onClick={handleSearch}
@@ -135,35 +159,50 @@ const MapBox = ({ selectedDriver }) => {
       >
         {parkData.features.map(park => {
 
-        const isSearchedCar = isSearchActive && filteredParks.some(filteredPark => filteredPark.properties.CAR_ID === park.properties.CAR_ID);
+          const isSearchedCar = isSearchActive && filteredParks.some(filteredPark => filteredPark.properties.CAR_ID === park.properties.CAR_ID);
 
           return (
-        <Marker
-          key={park.properties.PARK_ID}
-          latitude={park.geometry.coordinates[1]}
-          longitude={park.geometry.coordinates[0]}
-        >
-          <button
-            className="bg-none border-none cursor-pointer"
-            onClick={e => {
-              e.preventDefault();
-              setSelectedPark(park);
-              getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
-            }}
-          >
-            if()
-            <img 
-              src="icons8-car-30.png" 
-              alt="Car" 
-              style={{
-                boxShadow: isSearchedCar ? '0px 0px 15px 5px yellow' : 'none', // Thêm bóng màu vàng nếu là xe được tìm kiếm và đang trong chế độ tìm kiếm
-                borderRadius: '50%'
-              }}
-              />
-          </button>
-        </Marker>
-                );
-})}
+            <Marker
+              key={park.properties.PARK_ID}
+              latitude={park.geometry.coordinates[1]}
+              longitude={park.geometry.coordinates[0]}
+            >
+              <button
+                className="bg-none border-none cursor-pointer"
+                onClick={e => {
+                  e.preventDefault();
+                  setSelectedPark(park);
+                  getRoute(park.geometry.coordinates[1], park.geometry.coordinates[0]);
+                }}
+              >
+                {park.properties.VEHICLE_TYPE === "car" ? (
+                  <img
+                    src="icons8-car-30.png"
+                    alt="Car"
+                    style={{
+                      boxShadow: isSearchedCar ? '0px 0px 15px 5px yellow' : 'none', // Thêm bóng màu vàng nếu là xe được tìm kiếm và đang trong chế độ tìm kiếm
+                      borderRadius: '50%'
+                    }} />
+                ) : park.properties.VEHICLE_TYPE === "scooter" ? (
+                  <img
+                    src="icons8-scooter-30.png"
+                    alt="Scooter" style={{
+                      boxShadow: isSearchedCar ? '0px 0px 15px 5px yellow' : 'none', // Thêm bóng màu vàng nếu là xe được tìm kiếm và đang trong chế độ tìm kiếm
+                      borderRadius: '50%'
+                    }} />
+                ) : park.properties.VEHICLE_TYPE === "bus" ? (
+                  <img src="icons8-bus-30.png"
+                    alt="Bus"
+                    style={{
+                      boxShadow: isSearchedCar ? '0px 0px 15px 5px yellow' : 'none', // Thêm bóng màu vàng nếu là xe được tìm kiếm và đang trong chế độ tìm kiếm
+                      borderRadius: '50%'
+                    }} />
+                ) : null
+                }
+              </button>
+            </Marker>
+          );
+        })}
 
         {/* {selectedPark && (
           <Popup

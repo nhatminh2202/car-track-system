@@ -1,6 +1,6 @@
 import React from 'react';
 import { Popup } from "react-map-gl";
-import { CarOutlined, ClockCircleOutlined, EnvironmentOutlined, CheckCircleOutlined, AimOutlined, DashboardOutlined, HomeOutlined, ApiOutlined,  } from "@ant-design/icons";
+import { UserOutlined, ClockCircleOutlined, EnvironmentOutlined, DashboardOutlined, HomeOutlined, ApiOutlined,  } from "@ant-design/icons";
 
 const VehicleInfoPopup = ({ park, onClose }) => {
   if (!park) return null;
@@ -30,41 +30,33 @@ const VehicleInfoPopup = ({ park, onClose }) => {
       </div> */}
       <div>
         <h2 className="text-xl font-bold text-blue-600 mb-4 border-b pb-2">
-          VEHICLE INFORMATION
+        THÔNG TIN XE ID
         </h2>
         <div className="space-y-2">
           <p className="flex items-center">
-            <CarOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">ID:</span> {park.driver.name}
+            <UserOutlined className="mr-2 text-blue-500" />
+            <span className="font-semibold">Tài xế: </span> {park.driver.name}
           </p>
           <p className="flex items-center">
             <ClockCircleOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Time:</span> {park.properties.TIME}
+            <span className="font-semibold">Thời gian: </span> {park.properties.TIME}
           </p>
           <p className="flex items-center">
             <EnvironmentOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Location:</span>
+            <span className="font-semibold">Tọa độ:</span>
             {park.geometry.coordinates[1]}, {park.geometry.coordinates[0]}
           </p>
           <p className="flex items-center">
-            <CheckCircleOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Valid:</span> {park.properties.VALID}
-          </p>
-          <p className="flex items-center">
-            <AimOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Accuracy:</span> {park.properties.ACCURACY}km
-          </p>
-          <p className="flex items-center">
             <DashboardOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Speed:</span> {park.properties.SPEED}
+            <span className="font-semibold">Tốc độ: </span> {park.properties.SPEED}
           </p>
           <p className="flex items-center">
             <HomeOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Address:</span> {park.properties.ADDRESS}
+            <span className="font-semibold">Vị trí: </span> {park.properties.ADDRESS}
           </p>
           <p className="flex items-center">
             <ApiOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Protocol:</span> {park.properties.PROTOCOL}
+            <span className="font-semibold">Giao thức:</span> {park.properties.PROTOCOL}
           </p>
           <p className="flex items-center">
             {/* <BatteryOutlined className="mr-2 text-blue-500" /> */}
