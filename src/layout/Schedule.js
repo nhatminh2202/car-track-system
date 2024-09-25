@@ -9,7 +9,7 @@ import moment from 'moment';
 const Schedule = ({ onDriverClick }) => {
     const [viewMode, setViewMode] = useState('morning');
     const [selectedDate, setSelectedDate] = useState(moment().startOf('day')); 
-9
+    const [selectedDriver, setSelectedDriver] = useState(null);
 
     const scrollRef = useRef(null); 
 
