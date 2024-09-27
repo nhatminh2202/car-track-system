@@ -33,15 +33,38 @@
         "plate": "F 5444 AMP",
         "merk": "Avanza",
         "schedule": [
-          { "startTime": "00:30", "endTime": "05:15" },
-          { "startTime": "06:24", "endTime": "10:03" },
-          { "startTime": "14:10", "endTime": "17:45" },
-          { "startTime": "18:00", "endTime": "22:31" }
-        ],
-        "route": [
-          [-75.657489, 45.412298],
-          [-75.658989, 45.413198],
-          [-75.659989, 45.414298]
+          { 
+              "startTime": "00:30", 
+              "endTime": "05:15", 
+              "longitudeStart": -75.958989, 
+              "latitudeStart": 45.513198, 
+              "longitudeEnd": -75.657489, 
+              "latitudeEnd": 45.412298
+          },
+          { 
+              "startTime": "06:24", 
+              "endTime": "10:03", 
+              "longitudeStart": -75.657489, 
+              "latitudeStart": 45.412298, 
+              "longitudeEnd": -75.259989, 
+              "latitudeEnd": 45.614298
+          },
+          { 
+              "startTime": "14:10", 
+              "endTime": "17:45", 
+              "longitudeStart": -75.259989, 
+              "latitudeStart": 45.614298, 
+              "longitudeEnd": -75.133452, 
+              "latitudeEnd": 45.892912
+          },
+          { 
+              "startTime": "18:00", 
+              "endTime": "22:31", 
+              "longitudeStart": -75.133452, 
+              "latitudeStart": 45.892912, 
+              "longitudeEnd": -75.958989, 
+              "latitudeEnd": 45.513198
+          }
         ]
       }
     },
@@ -78,14 +101,30 @@
         "plate": "F 3333 XAB",
         "merk": "Raize",
         "schedule": [
-          { "startTime": "02:17", "endTime": "04:54" },
-          { "startTime": "08:30", "endTime": "11:00" },
-          { "startTime": "19:15", "endTime": "21:45" }
-        ],
-        "route": [
-          [-75.501389, 45.429876],
-          [-75.502500, 45.430900],
-          [-75.503600, 45.431950]
+          { 
+            "startTime": "02:17", 
+            "endTime": "04:54", 
+            "longitudeStart": -75.500489, 
+            "latitudeStart": 45.300198, 
+            "longitudeEnd": -75.600489, 
+            "latitudeEnd": 45.400298
+        },
+        { 
+            "startTime": "08:30", 
+            "endTime": "11:00", 
+            "longitudeStart": -75.650489, 
+            "latitudeStart": 45.450198, 
+            "longitudeEnd": -75.700489, 
+            "latitudeEnd": 45.500298
+        },
+        { 
+            "startTime": "19:15", 
+            "endTime": "21:45", 
+            "longitudeStart": -75.800489, 
+            "latitudeStart": 45.550198, 
+            "longitudeEnd": -75.900489, 
+            "latitudeEnd": 45.600298
+        }
         ]
       }
     },
@@ -122,14 +161,30 @@
         "plate": "F 9999 BAD",
         "merk": "Cruise",
         "schedule": [
-          { "startTime": "01:09", "endTime": "06:10" },
-          { "startTime": "09:30", "endTime": "12:52" },
-          { "startTime": "22:21", "endTime": "23:30" }
-        ],
-        "route": [
-          [-75.812976, 45.478593],
-          [-75.814000, 45.479500],
-          [-75.815050, 45.480600]
+          { 
+            "startTime": "02:17", 
+            "endTime": "04:54", 
+            "longitudeStart": -75.500489, 
+            "latitudeStart": 45.300198, 
+            "longitudeEnd": -75.600489, 
+            "latitudeEnd": 45.400298
+        },
+        { 
+            "startTime": "08:30", 
+            "endTime": "11:00", 
+            "longitudeStart": -75.650489, 
+            "latitudeStart": 45.450198, 
+            "longitudeEnd": -75.700489, 
+            "latitudeEnd": 45.500298
+        },
+        { 
+            "startTime": "19:15", 
+            "endTime": "21:45", 
+            "longitudeStart": -75.800489, 
+            "latitudeStart": 45.550198, 
+            "longitudeEnd": -75.900489, 
+            "latitudeEnd": 45.600298
+        }
         ]
       }
     },
@@ -166,14 +221,30 @@
         "plate": "F 1009 AMP",
         "merk": "Jazz",
         "schedule": [
-          { "startTime": "03:37", "endTime": "08:06" },
-          { "startTime": "10:10", "endTime": "15:30" },
-          { "startTime": "17:00", "endTime": "21:20" }
-        ],
-        "route": [
-          [-75.347299, 45.389122],
-          [-75.348500, 45.390100],
-          [-75.349600, 45.391150]
+          { 
+            "startTime": "03:37", 
+            "endTime": "08:06", 
+            "longitudeStart": -75.600500, 
+            "latitudeStart": 45.320200, 
+            "longitudeEnd": -75.750600, 
+            "latitudeEnd": 45.420250
+        },
+        { 
+            "startTime": "10:10", 
+            "endTime": "15:30", 
+            "longitudeStart": -75.700550, 
+            "latitudeStart": 45.370225, 
+            "longitudeEnd": -75.850650, 
+            "latitudeEnd": 45.470275
+        },
+        { 
+            "startTime": "17:00", 
+            "endTime": "21:20", 
+            "longitudeStart": -75.800700, 
+            "latitudeStart": 45.420250, 
+            "longitudeEnd": -75.950800, 
+            "latitudeEnd": 45.520300
+        }
         ]
       }
     }

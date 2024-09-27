@@ -16,10 +16,11 @@ const Schedule = ({ onDriverClick }) => {
     const totalHours = 24;
     const hoursArray = Array.from({ length: totalHours }, (_, index) => `${index.toString().padStart(2, '0')}:00`);
 
-    const handleClick = (driverName) => {
-        setSelectedDriver(driverName); // Lưu trữ tài xế được chọn
-        onDriverClick(driverName); // Notify the parent when a driver is clicked
+    const handleClick = (driverName, startCoords, endCoords) => {
+        setSelectedDriver(driverName); 
+        onDriverClick(driverName, startCoords, endCoords); 
     };
+    
 
     const timeToIndex = (time) => {
         const [hours, minutes] = time.split(':').map(Number);
@@ -110,7 +111,7 @@ const Schedule = ({ onDriverClick }) => {
                                                     borderRadius: "20px",
                                                 }}
                                                 title={`${formatTime(schedule.startTime)} - ${formatTime(schedule.endTime)}`}
-                                                onClick={() => handleClick(feature.driver.name)}
+                                                onClick={() => handleClick(feature.driver.name, {longitude: schedule.longitudeStart, latitude: schedule.latitudeStart}, {longitude: schedule.longitudeEnd, latitude: schedule.latitudeEnd})}
                                             >
                                                 {width > 30 && (
                                                     <>

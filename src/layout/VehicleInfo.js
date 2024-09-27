@@ -35,11 +35,11 @@ const VehicleInfoPopup = ({ park, onClose }) => {
         <div className="space-y-2">
           <p className="flex items-center">
             <UserOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Tài xế: </span> {park.driver.name}
+            <span className="font-semibold">Tài xế: </span> {park.driver.name} 
           </p>
           <p className="flex items-center">
             <ClockCircleOutlined className="mr-2 text-blue-500" />
-            <span className="font-semibold">Thời gian: </span> {park.properties.TIME}
+            <span className="font-semibold">Thời gian:  </span> {park.properties.TIME}
           </p>
           <p className="flex items-center">
             <EnvironmentOutlined className="mr-2 text-blue-500" />
@@ -57,10 +57,6 @@ const VehicleInfoPopup = ({ park, onClose }) => {
           <p className="flex items-center">
             <ApiOutlined className="mr-2 text-blue-500" />
             <span className="font-semibold">Giao thức:</span> {park.properties.PROTOCOL}
-          </p>
-          <p className="flex items-center">
-            {/* <BatteryOutlined className="mr-2 text-blue-500" /> */}
-            <span className="font-semibold">Battery:</span> {park.properties.FUEL_LEVEL}
           </p>
         </div>
       </div>
